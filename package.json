@@ -6,8 +6,8 @@
   "scripts": {
     "pull": "prisma migrate dev",
     "bd": "prisma studio",
-    "dev": "ts-node-dev --ignore-watch=node_modules --respawn --transpile-only src/index.ts ",
-    "start": "node ./dist/index.js"
+    "start": "ts-node-dev --ignore-watch=node_modules --respawn --transpile-only src/index.ts ",
+    "dev": "ts-node-dev --ignore-watch=node_modules --respawn --transpile-only src/index.ts "
   },
   "dependencies": {
     "@prisma/client": "^4.11.0",
