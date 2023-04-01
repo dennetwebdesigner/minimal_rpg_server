@@ -23,7 +23,7 @@ export class AuthCreateService {
 
     const token = await tokenCreate(user.id);
 
-    let response = !user.RulesOnUser[0].rule.name ? { token, rule: 'player' } : { token, rule: user.RulesOnUser[0].rule.name };
+    let response = user.RulesOnUser.length <= 0 ? { token, rule: 'player' } : { token, rule: user.RulesOnUser[0].rule.name };
 
     return response;
   }
