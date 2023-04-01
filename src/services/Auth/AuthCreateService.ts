@@ -4,14 +4,13 @@ import { setNewError, NOT_FOUND_CONTENT, BAD_REQUEST } from '../Error/CustomErro
 import { tokenCreate } from '../token/create';
 import { AuthDTO } from './AuthDTO';
 
-
 export class AuthCreateService {
   private repository: iUserRepository;
   constructor(repository: iUserRepository) {
     this.repository = repository;
   }
 
-  async execute(data: AuthDTO): Promise<string> {
+  async execute(data: AuthDTO): Promise<{ token: string; rule: string }> {
     const { username, password } = data;
 
     if (!username || !password) throw new Error(setNewError(NOT_FOUND_CONTENT, 'Esta faltando dados!'));
@@ -24,6 +23,8 @@ export class AuthCreateService {
 
     const token = await tokenCreate(user.id);
 
-    return token;
+    let response = !user.RulesOnUser[0].rule.name ? { token, rule: 'player' } : { token, rule: user.RulesOnUser[0].rule.name };
+
+    return response;
   }
 }

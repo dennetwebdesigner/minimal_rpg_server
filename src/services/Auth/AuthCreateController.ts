@@ -1,10 +1,8 @@
 import { Request, Response } from 'express';
 
-
 import { getNewError } from '../Error/CustomErrors';
 import { BAD_REQUEST } from './../Error/CustomErrors';
 import { AuthCreateService } from './AuthCreateService';
-
 
 export class AuthCreateController {
   private service: AuthCreateService;
@@ -15,8 +13,8 @@ export class AuthCreateController {
   async handle(req: Request, res: Response): Promise<Response> {
     try {
       const { username, password } = req.body;
-      const token = await this.service.execute({ username, password });
-      return res.json({ token });
+      const response = await this.service.execute({ username, password });
+      return res.json(response);
     } catch (error: any) {
       const data = getNewError(error.message);
 
