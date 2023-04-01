@@ -8,11 +8,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model Rules {
+  id          Int           @id @default(autoincrement())
+  name        String
+  RulesOnUser RulesOnUser[]
+
+  @@map("rules")
+}
+
+model RulesOnUser {
+  rule    Rules  @relation(fields: [rule_id], references: [id])
+  rule_id Int // relation scalar field (used in the `@relation` attribute above)
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([rule_id, user_id])
+}
+
 model User {
-  id         String       @id @default(uuid())
-  username   String       @unique
-  password   String
-  Characters Characters[]
+  id          String        @id @default(uuid())
+  username    String        @unique
+  password    String
+  Characters  Characters[]
+  RulesOnUser RulesOnUser[]
 }
 
 model Characters {
@@ -34,4 +52,38 @@ model Attributes {
   life_max     Float
   character_id String
   user         Characters @relation(fields: [character_id], references: [id], onDelete: Cascade)
+}
+
+// =================== MAP ===========================
+
+model Maps {
+  id       String     @id @default(uuid())
+  name     String     @unique
+  level    Int
+  Monsters Monsters[]
+
+  @@map("maps")
+}
+
+model Monsters {
+  id          String @id @default(uuid())
+  name        String @unique
+  level       Int
+  reward      String
+  description String
+
+  map_id             String
+  user               Maps                 @relation(fields: [map_id], references: [id], onDelete: Cascade)
+  Monster_Attributes Monster_Attributes[]
+}
+
+model Monster_Attributes {
+  id           String   @id @default(uuid())
+  attack_min   Float
+  attack_max   Float
+  defense_rate Float
+  life_current Float
+  life_max     Float
+  Monster_id   String
+  user         Monsters @relation(fields: [Monster_id], references: [id], onDelete: Cascade)
 }
