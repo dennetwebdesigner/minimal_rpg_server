@@ -17,9 +17,9 @@ model Rules {
 }
 
 model RulesOnUser {
-  rule    Rules  @relation(fields: [rule_id], references: [id])
+  rule    Rules  @relation(fields: [rule_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   rule_id Int // relation scalar field (used in the `@relation` attribute above)
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id String // relation scalar field (used in the `@relation` attribute above)
 
   @@id([rule_id, user_id])

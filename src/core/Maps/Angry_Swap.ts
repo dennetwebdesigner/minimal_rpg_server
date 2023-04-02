@@ -1,4 +1,4 @@
-import { Wild_Cat } from '../Monsters/Wild_Cat';
+import { Jumping_Frog } from '../Monsters/Jumping_Frog';
 
 export class Angry_Swap {
   public name: string;
@@ -11,6 +11,6 @@ export class Angry_Swap {
   }
 
   setCreatures() {
-    this.creatures = [new Wild_Cat({}).name];
+    this.creatures = [new Jumping_Frog({}).name];
   }
 }
