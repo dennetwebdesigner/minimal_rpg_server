@@ -1,5 +1,6 @@
 import { iAttrubutes } from '../Player/Attributes';
 
+
 export interface iProfile {
   name: string;
   level: {
@@ -10,6 +11,7 @@ export interface iProfile {
 }
 
 export interface iPlayer {
+  enemy: any;
   name: string;
   level: {
     current: number;

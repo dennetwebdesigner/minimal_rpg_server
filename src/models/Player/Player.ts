@@ -1,7 +1,9 @@
 import { iProfile, iPlayer } from '../Interfaces/Player';
 import { iAttrubutes } from './Attributes';
 
+
 export class Player implements iPlayer {
+  enemy: any;
   name: string;
   level: {
     current: number;
@@ -13,5 +15,6 @@ export class Player implements iPlayer {
     this.name = data.name;
     this.level = data.level;
     this.attributes = data.attributes;
+    this.enemy = null;
   }
 }

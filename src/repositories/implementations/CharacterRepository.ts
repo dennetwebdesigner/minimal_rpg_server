@@ -14,6 +14,10 @@ export class Characterrepository implements iCharacterrepository {
     });
   }
 
+  async findById(data: { id: string }): Promise<any> {
+    return await database.characters.findUnique({ where: { id: data.id }, include: { Attributes: true } });
+  }
+
   async findByName(data: { name: string }): Promise<any> {
     return await database.characters.findUnique({ where: { name: data.name } });
   }

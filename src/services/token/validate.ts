@@ -21,7 +21,7 @@ export const tokenResolve = async (token_validate: string): Promise<{ id: string
 
     return { id };
   } catch (error: any) {
-    console.log(token_validate, error);
+    console.log(error);
     if (error.message == 'jwt expired') return { error: 'token expirado!', status: BAD_REQUEST };
     if (error.message == 'invalid signature') {
       return { error: 'token expirado!', status: BAD_REQUEST };

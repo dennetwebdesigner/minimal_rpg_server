@@ -6,4 +6,9 @@ declare global {
       userId: string;
     }
   }
+  namespace Socket {
+    interface SocketData {
+      userId: string;
+    }
+  }
 }
