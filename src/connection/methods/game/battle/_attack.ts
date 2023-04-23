@@ -44,10 +44,9 @@ export const _attack = (connection: Socket) => {
 
       update_server_character(id, { key: 'Attributes', value: [response_attack.character] });
       update_server_character(id, { key: 'enemy', value: response_attack.enemy });
+      connection.emit('_battle/attack', { type: 'enemy', data: info_enemy });
 
-      connection.emit('_battle/attack', { type: 'player', data: info_player });
-
-      setTimeout(() => connection.emit('_battle/attack', { type: 'enemy', data: info_enemy }), 700);
+      setTimeout(() => connection.emit('_battle/attack', { type: 'player', data: info_player }), 700);
 
       //   console.log(response_attack);
     } catch (e) {
